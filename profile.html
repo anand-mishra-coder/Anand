@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#2563eb"
+    >
+
+    <meta
+        name="description"
+        content="CallWeb Profile"
+    >
+
+    <title>CallWeb — Profile</title>
+
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <!-- Profile CSS -->
+    <link
+        rel="stylesheet"
+        href="css/profile.css"
+    >
+
+<style>
+  /* =========================================================
+   CallWeb — Profile Styles
+   File: css/profile.css
+   ========================================================= */
+
+
+/* =========================================================
+   Profile Page
+   ========================================================= */
+
+.profile-page {
+    width: 100%;
+    max-width: 620px;
+
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    padding: 0 18px 40px;
+}
+
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.profile-header {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-bottom: 1px solid var(--border);
+
+    margin-bottom: 24px;
+}
+
+
+.profile-header h1 {
+    font-size: 20px;
+    font-weight: 750;
+
+    letter-spacing: -0.3px;
+}
+
+
+.header-space {
+    width: 40px;
+}
+
+
+/* =========================================================
+   Back Button
+   ========================================================= */
+
+.back-button {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--text);
+
+    background: #ffffff;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    transition: var(--transition);
+}
+
+
+.back-button:hover {
+    color: var(--primary);
+
+    background: var(--primary-light);
+
+    border-color: #bfdbfe;
+}
+
+
+.back-button:active {
+    transform: scale(0.95);
+}
+
+
+.back-button svg {
+    width: 19px;
+    height: 19px;
+}
+
+
+/* =========================================================
+   Main Profile Card
+   ========================================================= */
+
+.profile-card {
+    padding: 30px 20px;
+
+    text-align: center;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow:
+        0 12px 35px rgba(15, 23, 42, 0.06);
+}
+
+
+/* =========================================================
+   Avatar
+   ========================================================= */
+
+.profile-avatar-wrapper {
+    position: relative;
+
+    width: 108px;
+    height: 108px;
+
+    margin: 0 auto 18px;
+}
+
+
+.profile-avatar-large {
+    width: 108px;
+    height: 108px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    border: 4px solid #ffffff;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.20);
+
+    font-size: 38px;
+    font-weight: 750;
+}
+
+
+.profile-avatar-large img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+}
+
+
+.online-indicator {
+    position: absolute;
+
+    right: 5px;
+    bottom: 6px;
+
+    width: 20px;
+    height: 20px;
+
+    background: #22c55e;
+
+    border: 4px solid #ffffff;
+
+    border-radius: 50%;
+}
+
+
+/* =========================================================
+   Profile Name
+   ========================================================= */
+
+.profile-name {
+    font-size: 23px;
+
+    font-weight: 750;
+
+    letter-spacing: -0.4px;
+}
+
+
+.profile-email {
+    margin-top: 6px;
+
+    color: var(--text-secondary);
+
+    font-size: 13px;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   Provider Badge
+   ========================================================= */
+
+.profile-provider {
+    width: fit-content;
+
+    margin: 14px auto 0;
+
+    padding: 7px 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+
+    color: var(--success);
+
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 650;
+}
+
+
+.profile-provider svg {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* =========================================================
+   Profile Section
+   ========================================================= */
+
+.profile-section {
+    margin-top: 20px;
+
+    padding: 20px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+}
+
+
+.section-title {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 16px;
+}
+
+
+.section-title svg {
+    width: 18px;
+    height: 18px;
+
+    color: var(--primary);
+}
+
+
+.section-title h3 {
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   Information List
+   ========================================================= */
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.info-item {
+    display: flex;
+    align-items: center;
+
+    gap: 13px;
+
+    padding: 14px 0;
+
+    border-bottom: 1px solid #f1f5f9;
+}
+
+
+.info-item:last-child {
+    border-bottom: 0;
+
+    padding-bottom: 0;
+}
+
+
+.info-item:first-child {
+    padding-top: 0;
+}
+
+
+/* =========================================================
+   Info Icon
+   ========================================================= */
+
+.info-icon {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+    background: var(--primary-light);
+
+    border-radius: 10px;
+}
+
+
+.info-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =========================================================
+   Info Content
+   ========================================================= */
+
+.info-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.info-content span {
+    color: var(--text-secondary);
+
+    font-size: 11px;
+}
+
+
+.info-content strong {
+    color: var(--text);
+
+    font-size: 13px;
+    font-weight: 650;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   Logout Section
+   ========================================================= */
+
+.logout-section {
+    margin-top: 20px;
+}
+
+
+.logout-button {
+    width: 100%;
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    color: var(--danger);
+
+    background: #ffffff;
+
+    border: 1px solid #fecaca;
+
+    border-radius: var(--radius-md);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    transition:
+        background var(--transition),
+        border-color var(--transition),
+        transform var(--transition);
+}
+
+
+.logout-button:hover {
+    background: #fef2f2;
+
+    border-color: #fca5a5;
+}
+
+
+.logout-button:active {
+    transform: scale(0.985);
+}
+
+
+.logout-button svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* =========================================================
+   Profile Message
+   ========================================================= */
+
+.profile-message {
+    display: none;
+
+    margin-top: 12px;
+
+    padding: 10px 12px;
+
+    border-radius: var(--radius-sm);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+
+.profile-message.error {
+    display: block;
+
+    color: var(--danger);
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+}
+
+
+.profile-message.success {
+    display: block;
+
+    color: var(--success);
+
+    background: #f0fdf4;
+
+    border: 1px solid #bbf7d0;
+}
+
+
+/* =========================================================
+   Loading State
+   ========================================================= */
+
+.profile-card.loading .profile-avatar-large {
+    animation: profilePulse 1.2s ease-in-out infinite;
+}
+
+
+@keyframes profilePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.55;
+    }
+
+}
+
+
+/* =========================================================
+   Logout Loading
+   ========================================================= */
+
+.logout-button.loading {
+    cursor: wait;
+
+    opacity: 0.7;
+}
+
+
+.logout-button.loading svg {
+    animation:
+        logoutSpin 0.8s linear infinite;
+}
+
+
+@keyframes logoutSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   Tablet
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .profile-page {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .profile-card {
+        padding: 28px 18px;
+    }
+
+}
+
+
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .profile-page {
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-bottom: 30px;
+    }
+
+
+    .profile-header {
+        height: 62px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .profile-header h1 {
+        font-size: 18px;
+    }
+
+
+    .back-button,
+    .header-space {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .profile-card {
+        padding: 25px 15px;
+
+        border-radius: 18px;
+    }
+
+
+    .profile-avatar-wrapper,
+    .profile-avatar-large {
+        width: 96px;
+        height: 96px;
+    }
+
+
+    .profile-avatar-large {
+        font-size: 33px;
+    }
+
+
+    .online-indicator {
+        width: 18px;
+        height: 18px;
+
+        right: 4px;
+        bottom: 5px;
+    }
+
+
+    .profile-name {
+        font-size: 21px;
+    }
+
+
+    .profile-section {
+        padding: 17px 15px;
+
+        border-radius: 18px;
+    }
+
+
+    .info-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .logout-button {
+        min-height: 48px;
+    }
+
+}
+
+
+/* =========================================================
+   Small Mobile
+   ========================================================= */
+
+@media (max-width: 340px) {
+
+    .profile-avatar-wrapper,
+    .profile-avatar-large {
+        width: 88px;
+        height: 88px;
+    }
+
+
+    .profile-avatar-large {
+        font-size: 30px;
+    }
+
+
+    .profile-name {
+        font-size: 19px;
+    }
+
+
+    .info-content strong {
+        font-size: 12px;
+    }
+
+}
+  
+</style>
+    <!-- Lucide Icons -->
+    <script
+        src="https://unpkg.com/lucide@latest"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+    <main class="profile-page">
+
+
+        <!-- =================================================
+             TOP HEADER
+             ================================================= -->
+
+        <header class="profile-header">
+
+            <button
+                type="button"
+                class="back-button"
+                id="backButton"
+                aria-label="Go back"
+                title="Back"
+            >
+
+                <i data-lucide="arrow-left"></i>
+
+            </button>
+
+
+            <h1>
+                Profile
+            </h1>
+
+
+            <div class="header-space"></div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             PROFILE CONTENT
+             ================================================= -->
+
+        <section class="profile-card">
+
+
+            <!-- Avatar -->
+
+            <div class="profile-avatar-wrapper">
+
+                <div
+                    class="profile-avatar-large"
+                    id="profileAvatar"
+                >
+
+                    <span id="profileInitial">
+                        U
+                    </span>
+
+                    <img
+                        id="profilePhoto"
+                        src=""
+                        alt="Profile photo"
+                        hidden
+                    >
+
+                </div>
+
+
+                <div
+                    class="online-indicator"
+                    title="Online"
+                ></div>
+
+            </div>
+
+
+
+            <!-- Name -->
+
+            <h2
+                id="profileName"
+                class="profile-name"
+            >
+                Loading...
+            </h2>
+
+
+            <!-- Email -->
+
+            <p
+                id="profileEmail"
+                class="profile-email"
+            >
+                Loading...
+            </p>
+
+
+            <!-- Provider -->
+
+            <div
+                class="profile-provider"
+                id="profileProvider"
+            >
+
+                <i data-lucide="shield-check"></i>
+
+                <span>
+                    Account verified
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ACCOUNT INFORMATION
+             ================================================= -->
+
+        <section class="profile-section">
+
+
+            <div class="section-title">
+
+                <i data-lucide="user"></i>
+
+                <h3>
+                    Account Information
+                </h3>
+
+            </div>
+
+
+            <div class="info-list">
+
+
+                <!-- Name -->
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i data-lucide="user-round"></i>
+
+                    </div>
+
+                    <div class="info-content">
+
+                        <span>
+                            Name
+                        </span>
+
+                        <strong id="infoName">
+                            Loading...
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Email -->
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i data-lucide="mail"></i>
+
+                    </div>
+
+                    <div class="info-content">
+
+                        <span>
+                            Email
+                        </span>
+
+                        <strong id="infoEmail">
+                            Loading...
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Login Provider -->
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+
+                        <i data-lucide="log-in"></i>
+
+                    </div>
+
+                    <div class="info-content">
+
+                        <span>
+                            Sign-in Method
+                        </span>
+
+                        <strong id="infoProvider">
+                            Loading...
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LOGOUT
+             ================================================= -->
+
+        <section class="logout-section">
+
+            <button
+                type="button"
+                class="logout-button"
+                id="logoutButton"
+            >
+
+                <i data-lucide="log-out"></i>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+
+            <div
+                id="profileMessage"
+                class="profile-message"
+                role="alert"
+            ></div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         Firebase
+         ================================================= -->
+
+    <script
+        type="module"
+        src="js/firebase.js"
+    ></script>
+
+
+    <!-- =================================================
+         Profile JS
+         ================================================= -->
+
+    <script
+        type="module"
+        src="js/profile.js"
+    ></script>
+
+
+    <!-- =================================================
+         Icons
+         ================================================= -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                if (window.lucide) {
+
+                    window.lucide.createIcons();
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

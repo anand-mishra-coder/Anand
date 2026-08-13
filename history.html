@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#2563eb"
+    >
+
+    <meta
+        name="description"
+        content="CallWeb — View your audio and video call history"
+    >
+
+    <meta
+        name="color-scheme"
+        content="light"
+    >
+
+    <title>CallWeb — Call History</title>
+
+
+    <!-- =====================================================
+         FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         MAIN CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/history.css"
+    >
+
+
+    <!-- =====================================================
+         LUCIDE ICONS
+    ====================================================== -->
+
+    <script
+        src="https://unpkg.com/lucide@latest"
+    ></script>
+
+</head>
+
+
+<body class="history-body">
+
+
+<div class="app-shell">
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="dashboard-header">
+
+
+        <!-- BRAND -->
+
+        <a
+            href="dashboard.html"
+            class="header-brand"
+            aria-label="CallWeb Dashboard"
+        >
+
+            <div class="header-brand-icon">
+
+                <i data-lucide="phone-call"></i>
+
+            </div>
+
+
+            <div class="header-brand-text">
+
+                <h1>
+                    CallWeb
+                </h1>
+
+                <span>
+                    Call History
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- HEADER ACTIONS -->
+
+        <div class="header-actions">
+
+
+            <!-- Notification -->
+
+            <button
+                type="button"
+                class="header-icon-button"
+                id="notificationButton"
+                aria-label="Notifications"
+                title="Notifications"
+            >
+
+                <i data-lucide="bell"></i>
+
+                <span
+                    class="notification-dot"
+                    aria-hidden="true"
+                ></span>
+
+            </button>
+
+
+            <!-- Profile -->
+
+            <a
+                href="profile.html"
+                class="profile-button"
+                id="profileButton"
+                aria-label="Open profile"
+                title="Profile"
+            >
+
+                <span
+                    class="profile-avatar"
+                    id="profileAvatar"
+                >
+                    U
+                </span>
+
+            </a>
+
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="history-main">
+
+
+        <!-- =================================================
+             PAGE INTRO
+        ================================================== -->
+
+        <section class="history-title">
+
+
+            <div class="history-title-content">
+
+                <span class="history-label">
+
+                    <i data-lucide="clock-3"></i>
+
+                    Your activity
+
+                </span>
+
+
+                <h2>
+                    Call History
+                </h2>
+
+
+                <p>
+                    Review your previous audio and video calls.
+                </p>
+
+            </div>
+
+
+            <!-- Back to dashboard -->
+
+            <a
+                href="dashboard.html"
+                class="history-dashboard-button"
+            >
+
+                <i data-lucide="phone"></i>
+
+                <span>
+                    Start a Call
+                </span>
+
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             SEARCH
+        ================================================== -->
+
+        <section class="history-search">
+
+
+            <div class="history-search-box">
+
+
+                <div class="history-search-icon">
+
+                    <i data-lucide="search"></i>
+
+                </div>
+
+
+                <input
+                    type="search"
+                    id="historySearch"
+                    placeholder="Search call history..."
+                    autocomplete="off"
+                    aria-label="Search call history"
+                >
+
+
+                <button
+                    type="button"
+                    id="clearHistorySearch"
+                    class="history-search-clear"
+                    aria-label="Clear search"
+                    title="Clear search"
+                >
+
+                    <i data-lucide="x"></i>
+
+                </button>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             FILTERS
+        ================================================== -->
+
+        <section
+            class="history-filters"
+            aria-label="Call history filters"
+        >
+
+
+            <!-- All -->
+
+            <button
+                type="button"
+                class="history-filter active"
+                data-filter="all"
+            >
+
+                <i data-lucide="layers-3"></i>
+
+                <span>
+                    All
+                </span>
+
+            </button>
+
+
+            <!-- Audio -->
+
+            <button
+                type="button"
+                class="history-filter"
+                data-filter="audio"
+            >
+
+                <i data-lucide="phone"></i>
+
+                <span>
+                    Audio
+                </span>
+
+            </button>
+
+
+            <!-- Video -->
+
+            <button
+                type="button"
+                class="history-filter"
+                data-filter="video"
+            >
+
+                <i data-lucide="video"></i>
+
+                <span>
+                    Video
+                </span>
+
+            </button>
+
+
+            <!-- Missed -->
+
+            <button
+                type="button"
+                class="history-filter"
+                data-filter="missed"
+            >
+
+                <i data-lucide="phone-missed"></i>
+
+                <span>
+                    Missed
+                </span>
+
+            </button>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             MESSAGE
+        ================================================== -->
+
+        <div
+            id="historyMessage"
+            class="history-message"
+            role="alert"
+            aria-live="polite"
+        ></div>
+
+
+
+        <!-- =================================================
+             LOADING
+        ================================================== -->
+
+        <div
+            id="historyLoading"
+            class="history-loading"
+        >
+
+            <div
+                class="history-spinner"
+                aria-hidden="true"
+            ></div>
+
+            <div class="history-loading-text">
+
+                <strong>
+                    Loading history
+                </strong>
+
+                <span>
+                    Please wait...
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             HISTORY LIST
+        ================================================== -->
+
+        <section
+            id="historyList"
+            class="history-list"
+            aria-label="Call history"
+        ></section>
+
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================== -->
+
+        <section
+            id="historyEmpty"
+            class="history-empty"
+            style="display:none;"
+        >
+
+
+            <div class="history-empty-icon">
+
+                <i data-lucide="history"></i>
+
+            </div>
+
+
+            <div class="history-empty-content">
+
+                <h3>
+                    No call history
+                </h3>
+
+                <p>
+                    Your completed audio and video calls
+                    will appear here.
+                </p>
+
+
+                <a
+                    href="dashboard.html"
+                    class="history-action"
+                >
+
+                    <i data-lucide="phone"></i>
+
+                    <span>
+                        Start a Call
+                    </span>
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         BOTTOM NAVIGATION
+    ====================================================== -->
+
+    <nav
+        class="bottom-navigation"
+        aria-label="Main navigation"
+    >
+
+
+        <!-- Dashboard -->
+
+        <a
+            href="dashboard.html"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+
+                <i data-lucide="house"></i>
+
+            </span>
+
+            <span class="bottom-nav-label">
+                Home
+            </span>
+
+        </a>
+
+
+        <!-- History -->
+
+        <a
+            href="history.html"
+            class="bottom-nav-item active"
+            aria-current="page"
+        >
+
+            <span class="bottom-nav-icon">
+
+                <i data-lucide="history"></i>
+
+            </span>
+
+            <span class="bottom-nav-label">
+                History
+            </span>
+
+        </a>
+
+
+        <!-- Profile -->
+
+        <a
+            href="profile.html"
+            class="bottom-nav-item"
+        >
+
+            <span class="bottom-nav-icon">
+
+                <i data-lucide="user-round"></i>
+
+            </span>
+
+            <span class="bottom-nav-label">
+                Profile
+            </span>
+
+        </a>
+
+
+    </nav>
+
+
+</div>
+
+
+
+<!-- =====================================================
+     HISTORY JAVASCRIPT
+====================================================== -->
+
+<script
+    type="module"
+    src="js/history.js"
+></script>
+
+
+
+<!-- =====================================================
+     LUCIDE INITIALIZATION
+====================================================== -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (
+            window.lucide &&
+            typeof window.lucide.createIcons === "function"
+        ) {
+
+            window.lucide.createIcons();
+
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>

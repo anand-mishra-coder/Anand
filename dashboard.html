@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#2563eb"
+    >
+
+    <title>CallWeb — Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="css/dashboard.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/call.css"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<header class="dashboard-header">
+
+    <div class="dashboard-brand">
+
+        <div class="brand-icon">
+            <i data-lucide="phone-call"></i>
+        </div>
+
+        <div>
+            <h1>CallWeb</h1>
+            <p>Connect instantly</p>
+        </div>
+
+    </div>
+
+
+    <div class="header-user">
+
+        <div class="header-user-info">
+
+            <strong id="currentUserName">
+                User
+            </strong>
+
+            <span id="currentUserEmail">
+                user@example.com
+            </span>
+
+        </div>
+
+        <a
+            href="profile.html"
+            class="profile-button"
+            id="profileButton"
+            aria-label="Profile"
+            title="Profile"
+        >
+            <span
+                class="profile-avatar"
+                id="profileAvatar"
+            >
+                U
+            </span>
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="dashboard-container">
+
+    <!-- =================================================
+         SEARCH
+    ================================================= -->
+
+    <section class="search-section">
+
+        <div class="search-wrapper">
+
+            <i data-lucide="search"></i>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search people..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MESSAGE
+    ================================================= -->
+
+    <div
+        id="dashboardMessage"
+        class="dashboard-message"
+    ></div>
+
+
+    <!-- =================================================
+         LOADING
+    ================================================= -->
+
+    <div
+        id="loadingState"
+        class="loading-state"
+    >
+
+        <div class="dashboard-spinner"></div>
+
+        <span>
+            Loading users...
+        </span>
+
+    </div>
+
+
+    <!-- =================================================
+         USERS
+    ================================================= -->
+
+    <section class="users-section">
+
+        <div
+            id="userList"
+            class="user-list"
+        ></div>
+
+
+        <!-- Empty -->
+
+        <div
+            id="emptyState"
+            class="empty-state"
+            style="display:none;"
+        >
+
+            <div class="empty-icon">
+                <i data-lucide="users"></i>
+            </div>
+
+            <h2>
+                No users found
+            </h2>
+
+            <p>
+                Ask another user to create an account.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     CALL SYSTEM
+===================================================== -->
+
+<div
+    id="callModal"
+    class="call-system"
+    hidden
+>
+
+
+    <!-- =================================================
+         INCOMING CALL
+    ================================================= -->
+
+    <section
+        id="incomingCallModal"
+        class="call-modal incoming-call-modal"
+        hidden
+    >
+
+        <div class="call-modal-content">
+
+            <div class="call-avatar incoming-avatar">
+
+                <span id="incomingCallerInitial">
+                    U
+                </span>
+
+            </div>
+
+
+            <h2>
+                Incoming Call
+            </h2>
+
+
+            <h3 id="incomingCallerName">
+                User
+            </h3>
+
+
+            <p id="callStatus">
+                Incoming audio call
+            </p>
+
+
+            <div class="incoming-actions">
+
+                <button
+                    type="button"
+                    id="rejectCallButton"
+                    class="call-action-button reject-button"
+                    aria-label="Reject call"
+                >
+                    <i data-lucide="phone-off"></i>
+
+                    <span>
+                        Decline
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    id="acceptCallButton"
+                    class="call-action-button accept-button"
+                    aria-label="Accept call"
+                >
+                    <i data-lucide="phone"></i>
+
+                    <span>
+                        Accept
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         OUTGOING CALL
+    ================================================= -->
+
+    <section
+        id="outgoingCallModal"
+        class="call-modal outgoing-call-modal"
+        hidden
+    >
+
+        <div class="call-modal-content">
+
+            <div class="call-avatar outgoing-avatar">
+
+                <span>
+                    <i data-lucide="user"></i>
+                </span>
+
+            </div>
+
+
+            <h2>
+                Calling...
+            </h2>
+
+
+            <h3 id="outgoingCallerName">
+                User
+            </h3>
+
+
+            <p id="outgoingCallStatus">
+                Waiting for answer
+            </p>
+
+
+            <div class="calling-animation">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="cancelCallButton"
+                class="end-call-button"
+            >
+
+                <i data-lucide="phone-off"></i>
+
+                <span>
+                    Cancel
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ACTIVE CALL
+    ================================================= -->
+
+    <section
+        id="activeCallModal"
+        class="active-call-modal"
+        hidden
+    >
+
+
+        <!-- Remote Video -->
+
+        <div class="remote-video-container">
+
+            <video
+                id="remoteVideo"
+                class="remote-video"
+                autoplay
+                playsinline
+            ></video>
+
+
+            <div
+                id="remoteVideoPlaceholder"
+                class="remote-video-placeholder"
+            >
+
+                <div class="remote-placeholder-icon">
+                    <i data-lucide="user"></i>
+                </div>
+
+                <span>
+                    Connected
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Local Video -->
+
+        <div class="local-video-container">
+
+            <video
+                id="localVideo"
+                class="local-video"
+                autoplay
+                muted
+                playsinline
+            ></video>
+
+        </div>
+
+
+        <!-- Audio Remote -->
+
+        <audio
+            id="localAudio"
+            autoplay
+        ></audio>
+
+
+        <!-- Active Call Header -->
+
+        <div class="active-call-header">
+
+            <div>
+
+                <strong>
+                    CallWeb
+                </strong>
+
+                <span id="activeCallStatus">
+                    Connected
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Call Controls -->
+
+        <div class="active-call-controls">
+
+
+            <!-- Mute -->
+
+            <button
+                type="button"
+                id="muteButton"
+                class="call-control-button"
+                aria-label="Mute microphone"
+                title="Mute"
+            >
+
+                <i data-lucide="mic"></i>
+
+            </button>
+
+
+            <!-- Camera -->
+
+            <button
+                type="button"
+                id="cameraButton"
+                class="call-control-button"
+                aria-label="Turn camera off"
+                title="Camera"
+            >
+
+                <i data-lucide="video"></i>
+
+            </button>
+
+
+            <!-- End -->
+
+            <button
+                type="button"
+                id="endCallButton"
+                class="call-control-button end-call-control"
+                aria-label="End call"
+                title="End Call"
+            >
+
+                <i data-lucide="phone-off"></i>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- =====================================================
+     BOTTOM NAVIGATION
+===================================================== -->
+
+<nav class="bottom-navigation" aria-label="Main navigation">
+
+    <a
+        href="dashboard.html"
+        class="bottom-nav-item active"
+        id="dashboardNavButton"
+    >
+        <span class="bottom-nav-icon">
+            <i data-lucide="layout-dashboard"></i>
+        </span>
+
+        <span class="bottom-nav-label">
+            Dashboard
+        </span>
+    </a>
+
+
+    <a
+        href="history.html"
+        class="bottom-nav-item"
+        id="historyNavButton"
+    >
+        <span class="bottom-nav-icon">
+            <i data-lucide="history"></i>
+        </span>
+
+        <span class="bottom-nav-label">
+            History
+        </span>
+    </a>
+
+</nav>
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
+
+<script
+    type="module"
+    src="js/firebase.js"
+></script>
+
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
+<script
+    type="module"
+    src="js/dashboard.js"
+></script>
+
+
+<!-- =====================================================
+     WEBRTC
+===================================================== -->
+
+<script
+    type="module"
+    src="js/webrtc.js"
+></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>

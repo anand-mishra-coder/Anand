@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#2563eb"
+    >
+
+    <meta
+        name="description"
+        content="CallWeb - Secure audio and video calling"
+    >
+
+    <title>CallWeb — Login</title>
+
+
+    <!-- =================================================
+         Main CSS
+         ================================================= -->
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <!-- =================================================
+         Lucide Icons
+         ================================================= -->
+
+    <script
+        src="https://unpkg.com/lucide@latest"
+    ></script>
+
+</head>
+
+
+<body>
+
+
+    <!-- =================================================
+         AUTH PAGE
+         ================================================= -->
+
+    <main class="auth-page">
+
+
+        <section class="auth-card">
+
+
+            <!-- =================================================
+                 LOGO
+                 ================================================= -->
+
+            <div class="brand">
+
+                <div class="brand-icon">
+
+                    <i data-lucide="phone-call"></i>
+
+                </div>
+
+
+                <div class="brand-text">
+
+                    <h1>
+                        CallWeb
+                    </h1>
+
+                    <p>
+                        Connect with people instantly
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOGIN HEADER
+                 ================================================= -->
+
+            <div class="auth-header">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Login to continue to your account
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOGIN FORM
+                 ================================================= -->
+
+            <form
+                id="loginForm"
+                class="auth-form"
+            >
+
+
+                <!-- =================================================
+                     EMAIL
+                     ================================================= -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <i data-lucide="mail"></i>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <small
+                        id="emailError"
+                        class="error-message"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     PASSWORD
+                     ================================================= -->
+
+                <div class="form-group">
+
+
+                    <div class="label-row">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+
+                        <a
+                            href="#"
+                            id="forgotPassword"
+                            class="forgot-link"
+                        >
+                            Forgot password?
+                        </a>
+
+                    </div>
+
+
+                    <div class="input-wrapper">
+
+                        <i data-lucide="lock-keyhole"></i>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            id="passwordToggle"
+                            aria-label="Show password"
+                        >
+
+                            <i data-lucide="eye"></i>
+
+                        </button>
+
+                    </div>
+
+
+                    <small
+                        id="passwordError"
+                        class="error-message"
+                    ></small>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     REMEMBER ME
+                     ================================================= -->
+
+                <div class="form-options">
+
+                    <label class="remember-option">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     LOGIN BUTTON
+                     ================================================= -->
+
+                <button
+                    type="submit"
+                    id="loginBtn"
+                    class="primary-btn"
+                >
+
+                    <span class="btn-icon">
+
+                        <i data-lucide="log-in"></i>
+
+                    </span>
+
+
+                    <span class="btn-text">
+                        Login
+                    </span>
+
+
+                    <span
+                        class="loading-spinner"
+                        id="loginLoader"
+                    ></span>
+
+                </button>
+
+
+
+                <!-- =================================================
+                     LOGIN STATUS
+                     ================================================= -->
+
+                <div
+                    id="loginMessage"
+                    class="login-message"
+                    role="alert"
+                ></div>
+
+            </form>
+
+
+
+            <!-- =================================================
+                 GOOGLE LOGIN DIVIDER
+                 ================================================= -->
+
+            <div class="divider">
+
+                <span>
+                    OR
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GOOGLE SIGN IN
+                 ================================================= -->
+
+            <button
+                type="button"
+                id="googleSignInButton"
+                class="google-signin-button"
+            >
+
+                <!-- Google Icon -->
+
+                <svg
+                    class="google-icon"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path
+                        fill="#4285F4"
+                        d="M21.35 12.23c0-.71-.06-1.42-.18-2.1H12v3.98h5.24a4.48 4.48 0 0 1-1.94 2.94v2.45h3.14c1.84-1.69 2.91-4.18 2.91-7.27z"
+                    />
+
+                    <path
+                        fill="#34A853"
+                        d="M12 21.73c2.63 0 4.84-.87 6.45-2.36l-3.14-2.45c-.87.58-1.98.92-3.31.92-2.54 0-4.69-1.72-5.46-4.03H3.3v2.53A9.73 9.73 0 0 0 12 21.73z"
+                    />
+
+                    <path
+                        fill="#FBBC05"
+                        d="M6.54 13.81A5.85 5.85 0 0 1 6.23 12c0-.63.11-1.24.31-1.81V7.66H3.3A9.74 9.74 0 0 0 2.27 12c0 1.57.38 3.05 1.03 4.34l3.24-2.53z"
+                    />
+
+                    <path
+                        fill="#EA4335"
+                        d="M12 6.16c1.43 0 2.71.49 3.72 1.46l2.79-2.79C16.84 3.22 14.63 2.27 12 2.27a9.73 9.73 0 0 0-8.7 5.39l3.24 2.53c.77-2.31 2.92-4.03 5.46-4.03z"
+                    />
+
+                </svg>
+
+
+                <span>
+                    Sign in with Google
+                </span>
+
+
+                <span
+                    class="google-loader"
+                    id="googleLoader"
+                ></span>
+
+            </button>
+
+
+
+            <!-- =================================================
+                 REGISTER DIVIDER
+                 ================================================= -->
+
+            <div class="divider">
+
+                <span>
+                    New to CallWeb?
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 REGISTER
+                 ================================================= -->
+
+            <a
+                href="register.html"
+                class="secondary-btn"
+            >
+
+                <i data-lucide="user-plus"></i>
+
+                <span>
+                    Create Account
+                </span>
+
+            </a>
+
+
+
+            <!-- =================================================
+                 SECURITY
+                 ================================================= -->
+
+            <div class="security-note">
+
+                <i data-lucide="shield-check"></i>
+
+                <span>
+                    Your account and calls are protected
+                </span>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =================================================
+         FIREBASE
+         ================================================= -->
+
+    <script
+        type="module"
+        src="js/firebase.js"
+    ></script>
+
+
+    <!-- =================================================
+         AUTH LOGIC
+         ================================================= -->
+
+    <script
+        type="module"
+        src="js/auth.js"
+    ></script>
+
+
+
+    <!-- =================================================
+         ICON INITIALIZATION
+         ================================================= -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            () => {
+
+                if (window.lucide) {
+                    window.lucide.createIcons();
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

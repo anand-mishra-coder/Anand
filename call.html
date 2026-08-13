@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0d12"
+    >
+
+    <title>CallWeb — Call</title>
+
+    <link
+        rel="stylesheet"
+        href="css/call.css"
+    >
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+
+
+<body>
+
+<main class="call-app">
+
+
+    <!-- =====================================================
+         CALL LOADING
+    ====================================================== -->
+
+    <section
+        id="callLoading"
+        class="call-screen loading-screen"
+    >
+
+        <div class="loading-content">
+
+            <div class="loading-spinner"></div>
+
+            <h2>
+                Preparing call...
+            </h2>
+
+            <p id="loadingMessage">
+                Please wait
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         OUTGOING CALL
+    ====================================================== -->
+
+    <section
+        id="outgoingCallModal"
+        class="call-screen outgoing-screen"
+        hidden
+    >
+
+        <div class="outgoing-content">
+
+
+            <!-- Avatar -->
+
+            <div class="caller-avatar pulse">
+
+                <span id="outgoingAvatar">
+                    U
+                </span>
+
+            </div>
+
+
+            <p class="call-label">
+                Calling
+            </p>
+
+
+            <h1 id="outgoingCallerName">
+                User
+            </h1>
+
+
+            <p
+                id="outgoingCallType"
+                class="call-type"
+            >
+                Calling...
+            </p>
+
+
+            <div
+                id="outgoingCallStatus"
+                class="call-status"
+            >
+                Calling...
+            </div>
+
+
+            <!-- Dots -->
+
+            <div class="calling-dots">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+
+
+            <!-- Cancel -->
+
+            <button
+                id="cancelCallButton"
+                class="end-call-button"
+                type="button"
+            >
+
+                <i data-lucide="phone-off"></i>
+
+                <span>
+                    Cancel
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         INCOMING CALL
+    ====================================================== -->
+
+    <section
+        id="incomingCallModal"
+        class="call-screen incoming-screen"
+        hidden
+    >
+
+        <div class="incoming-content">
+
+
+            <!-- Avatar -->
+
+            <div class="caller-avatar incoming-avatar">
+
+                <span id="incomingAvatar">
+                    U
+                </span>
+
+            </div>
+
+
+            <p class="call-label">
+                Incoming Call
+            </p>
+
+
+            <h1 id="incomingCallerName">
+                User
+            </h1>
+
+
+            <p
+                id="incomingCallType"
+                class="call-type"
+            >
+                Incoming audio call
+            </p>
+
+
+            <div class="incoming-actions">
+
+
+                <!-- Reject -->
+
+                <button
+                    id="rejectCallButton"
+                    class="call-action reject"
+                    type="button"
+                    aria-label="Reject call"
+                    title="Reject"
+                >
+
+                    <span class="action-icon">
+                        <i data-lucide="phone-off"></i>
+                    </span>
+
+                    <small>
+                        Decline
+                    </small>
+
+                </button>
+
+
+                <!-- Accept -->
+
+                <button
+                    id="acceptCallButton"
+                    class="call-action accept"
+                    type="button"
+                    aria-label="Accept call"
+                    title="Accept"
+                >
+
+                    <span class="action-icon">
+                        <i data-lucide="phone"></i>
+                    </span>
+
+                    <small>
+                        Accept
+                    </small>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ACTIVE CALL
+    ====================================================== -->
+
+    <section
+        id="activeCallModal"
+        class="call-screen active-screen"
+        hidden
+    >
+
+
+        <!-- =================================================
+             REMOTE VIDEO
+        ================================================== -->
+
+        <div class="remote-video-container">
+
+
+            <video
+                id="remoteVideo"
+                class="remote-video"
+                autoplay
+                playsinline
+            ></video>
+
+
+            <!-- Audio-call / no-video placeholder -->
+
+            <div
+                id="remotePlaceholder"
+                class="remote-placeholder"
+            >
+
+                <div class="large-avatar">
+
+                    <span id="activeCallerAvatar">
+                        U
+                    </span>
+
+                </div>
+
+
+                <h2 id="callerName">
+                    User
+                </h2>
+
+
+                <p id="callStatus">
+                    Connecting...
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             LOCAL VIDEO
+        ================================================== -->
+
+        <div
+            id="localVideoContainer"
+            class="local-video-container"
+        >
+
+            <video
+                id="localVideo"
+                class="local-video"
+                autoplay
+                muted
+                playsinline
+            ></video>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TOP BAR
+        ================================================== -->
+
+        <header class="call-topbar">
+
+            <div class="call-user-info">
+
+
+                <div class="mini-avatar">
+
+                    <span id="topCallerAvatar">
+                        U
+                    </span>
+
+                </div>
+
+
+                <div class="top-user-details">
+
+                    <strong id="topCallerName">
+                        User
+                    </strong>
+
+                    <small id="topCallStatus">
+                        Connecting...
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- Call timer -->
+
+            <div
+                id="callTimer"
+                class="call-timer"
+            >
+                00:00
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             AUDIO ELEMENT
+        ================================================== -->
+
+        <audio
+            id="localAudio"
+            autoplay
+        ></audio>
+
+
+
+        <!-- =================================================
+             CALL CONTROLS
+        ================================================== -->
+
+        <div class="call-controls">
+
+
+            <!-- =============================================
+                 MUTE
+            ============================================== -->
+
+            <button
+                id="muteButton"
+                class="control-button"
+                type="button"
+                aria-label="Mute microphone"
+                title="Mute"
+            >
+
+                <i data-lucide="mic"></i>
+
+                <span class="control-label">
+                    Mute
+                </span>
+
+            </button>
+
+
+
+            <!-- =============================================
+                 CAMERA
+            ============================================== -->
+
+            <button
+                id="cameraButton"
+                class="control-button"
+                type="button"
+                aria-label="Turn camera off"
+                title="Camera"
+            >
+
+                <i data-lucide="video"></i>
+
+                <span class="control-label">
+                    Camera
+                </span>
+
+            </button>
+
+
+
+            <!-- =============================================
+                 SPEAKER
+            ============================================== -->
+
+            <button
+                id="speakerButton"
+                class="control-button"
+                type="button"
+                aria-label="Speaker"
+                title="Speaker"
+            >
+
+                <i data-lucide="volume-2"></i>
+
+                <span class="control-label">
+                    Speaker
+                </span>
+
+            </button>
+
+
+
+            <!-- =============================================
+                 END CALL
+            ============================================== -->
+
+            <button
+                id="endCallButton"
+                class="control-button end"
+                type="button"
+                aria-label="End call"
+                title="End call"
+            >
+
+                <i data-lucide="phone-off"></i>
+
+                <span class="control-label">
+                    End
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ERROR SCREEN
+    ====================================================== -->
+
+    <section
+        id="callModal"
+        class="call-screen error-screen"
+        hidden
+    >
+
+        <div class="call-error-box">
+
+
+            <div class="error-icon">
+
+                <i data-lucide="phone-off"></i>
+
+            </div>
+
+
+            <h2>
+                Call Error
+            </h2>
+
+
+            <p id="callErrorMessage">
+                Unable to connect the call.
+            </p>
+
+
+            <button
+                id="closeCallErrorButton"
+                type="button"
+                class="secondary-action"
+            >
+
+                <i data-lucide="arrow-left"></i>
+
+                <span>
+                    Back to Dashboard
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
+<script
+    type="module"
+    src="js/firebase.js"
+></script>
+
+
+
+<!-- =========================================================
+     WEBRTC
+========================================================= -->
+
+<script
+    type="module"
+    src="js/webrtc.js"
+></script>
+
+
+
+<!-- =========================================================
+     ICON INITIALIZATION
+========================================================= -->
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        if (
+            window.lucide &&
+            typeof window.lucide.createIcons ===
+            "function"
+        ) {
+
+            window.lucide.createIcons();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
